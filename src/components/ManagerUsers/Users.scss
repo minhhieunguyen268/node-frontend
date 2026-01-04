@@ -1,0 +1,23 @@
+
+
+.manage-users-container{
+    i{
+        padding-right: 7px;
+    }
+
+    .acctions{
+        .refresh{
+            margin-right: 10px;
+        }
+    }
+
+    .user-body{
+        .edit{
+            cursor: pointer;
+        }
+
+        .delete{
+            cursor: pointer;
+        }
+    }
+}
