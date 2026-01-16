@@ -10,7 +10,7 @@ const Register = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  
+
   const defaultValid = {
     isValidEmail: true,
     isValidPhoneNumber: true,
@@ -73,14 +73,12 @@ const Register = (props) => {
     if (!isValidInput()) return;
 
     try {
-      let response = await userService.registerNewUser({
+      let data = await userService.registerNewUser({
         email,
         phoneNumber,
         username,
         password,
       });
-
-      let data = response.data;
 
       if (data.EC === "0") {
         toast.success(data.EM);
@@ -89,12 +87,12 @@ const Register = (props) => {
         toast.error(data.EM);
       }
     } catch (error) {
-  if (error.response && error.response.data) {
-    toast.error(error.response.data.EM);
-  } else {
-    toast.error("Something went wrong, please try again!");
-  }
-}
+      if (error.response) {
+        toast.error(error.response.data.EM);
+      } else {
+        toast.error("Something went wrong, please try again!");
+      }
+    }
   };
 
   return (

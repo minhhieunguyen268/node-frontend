@@ -45,7 +45,7 @@ const Login = (props) => {
         valueLogin: valueLogin,
         password: password,
       });
-      let data = response.data;
+      let data = response;
       if (data.EC === "0") {
         toast.success(data.EM);
         let dataAccount = {

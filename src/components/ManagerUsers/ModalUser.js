@@ -52,10 +52,10 @@ const ModelUser = (props) => {
 
   const getGroups = async () => {
     let res = await userService.fetchGroups();
-    if (res && res.data && res.data.EC === 0) {
-      setUserGroups(res.data.DT);
-      if (res.data.DT && res.data.DT.length > 0) {
-        let group = res.data.DT;
+    if (res && res.EC === 0) {
+      setUserGroups(res.DT);
+      if (res.DT && res.DT.length > 0) {
+        let group = res.DT;
         setUserData({
           ...userData,
           groupId: group[0].id,
@@ -109,13 +109,13 @@ const ModelUser = (props) => {
         res = await userService.createNewUser(userData);
       }
 
-      if (res && res.data && res.data.EC === 0) {
-        toast.success(res.data.EM);
+      if (res && res.EC === 0) {
+        toast.success(res.EM);
         resetForm();
         props.handleClose();
         props.fetchUsers(props.currentPage + 1);
       } else {
-        toast.error(res.data.EM);
+        toast.error(res.EM);
 
         let _validInputs = _.cloneDeep(validInputsDefault);
         _validInputs.email = false;
